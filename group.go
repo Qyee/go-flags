@@ -262,16 +262,16 @@ func (g *Group) scanStruct(realval reflect.Value, sfield *reflect.StructField, h
 		}
 
 		short := rune(0)
-		rc := utf8.RuneCountInString(shortname)
+		//rc := utf8.RuneCountInString(shortname)
+		utf8.RuneCountInString(shortname)
+// 		if rc > 1 {
+// 			return newErrorf(ErrShortNameTooLong,
+// 				"short names can only be 1 character long, not `%s'",
+// 				shortname)
 
-		if rc > 1 {
-			return newErrorf(ErrShortNameTooLong,
-				"short names can only be 1 character long, not `%s'",
-				shortname)
-
-		} else if rc == 1 {
-			short, _ = utf8.DecodeRuneInString(shortname)
-		}
+// 		} else if rc == 1 {
+		short, _ = utf8.DecodeRuneInString(shortname)
+		//}
 
 		description := mtag.Get("description")
 		def := mtag.GetMany("default")
